@@ -22,8 +22,6 @@ public class Search {
 
 
 
-
-
     // B. write a second static method that has the same parameters as linearSearch but
     // instead of returning an index, it returns true if target is found or false
     // if target is not found
@@ -119,7 +117,7 @@ public class Search {
     public static int linearSearchCount(ArrayList<Integer> nums, int target)
     {
         int count = 0;
-        for (int i = nums.size(); i > 0; i--)
+        for (int i = 0; i < nums.size(); i++)
         {
             if(nums.get(i) == target)
             {

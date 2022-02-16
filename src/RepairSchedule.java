@@ -1,3 +1,4 @@
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 public class RepairSchedule
@@ -13,7 +14,8 @@ public class RepairSchedule
      */
     public RepairSchedule(int n)
     {
-        /* to be implemented in part (a) */
+        numberOfMechanics = n;
+        schedule = new ArrayList<CarRepair>();
 
     }
 
@@ -27,9 +29,15 @@ public class RepairSchedule
      */
     public boolean addRepair(int m, int b)
     {
-        /* to be implemented in part (b) */
-
-        return false; // STUB VALUE
+        for (int i = 0; i < schedule.size(); i++)
+        {
+            if(schedule.get(i).getMechanicNum() == m || schedule.get(i).getBayNum() == b)
+            {
+                return false;
+            }
+        }
+        schedule.add(new CarRepair(m, b));
+        return true;
     }
 
     /** Returns an ArrayList containing the mechanic identifiers of all available mechanics,
@@ -37,9 +45,23 @@ public class RepairSchedule
      */
     public ArrayList<Integer> availableMechanics()
     {
-        /* to be implemented in part (c) */
-
-        return null; // STUB VALUE
+        ArrayList<Integer> mecList = new ArrayList<>();
+        for (int i = 0; i < numberOfMechanics; i++)
+        {
+            int total = 0;
+            for (int x = 0; x < schedule.size(); x++)
+            {
+                if(schedule.get(x).getMechanicNum() == i)
+                {
+                    total++;
+                }
+            }
+            if(total ==0)
+            {
+                mecList.add(i);
+            }
+        }
+        return mecList;
     }
 
     /** Removes an element from schedule when a repair is complete. */
